@@ -78,7 +78,7 @@ function [pcaicaAnalysisOutput] = runPcaIca(inputMovie,nPCs,nICs,varargin)
 		elseif options.version==2
 			disp('running PCA-ICA, new version...')
 			startTime = tic;
-			[PcaOutputSpatial, PcaOutputTemporal, PcaOutputSingularValues, PcaInfo] = run_pca(inputMovie, nPCs, 'movie_dataset_name',options.inputDatasetName,'frameList',options.frameList);
+			[PcaOutputSpatial, PcaOutputTemporal, PcaOutputSingularValues, PcaInfo] = ciapkg.signal_extraction.pca_ica_2.run_pca(inputMovie, nPCs, 'movie_dataset_name',options.inputDatasetName,'frameList',options.frameList);
 
 			if isempty(PcaOutputTemporal)
 				disp('PCs are empty, skipping...')
@@ -99,7 +99,7 @@ function [pcaicaAnalysisOutput] = runPcaIca(inputMovie,nPCs,nICs,varargin)
 			% output_units = 'std';
 			% options.PCAICA.term_tol = 5e-6;
 			% options.PCAICA.max_iter = 1e3;
-			[IcaFilters, IcaTraces, IcaInfo] = run_ica(...
+			[IcaFilters, IcaTraces, IcaInfo] = ciapkg.signal_extraction.pca_ica_2.run_ica(...
 				PcaOutputSpatial,...
 				PcaOutputTemporal,...
 				PcaOutputSingularValues,...
